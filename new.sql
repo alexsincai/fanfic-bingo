@@ -1,6 +1,3 @@
-begin;
-
-drop table tropes;
 create table tropes (
     id serial primary key,
     trope character varying(255),
@@ -56,15 +53,11 @@ insert into tropes (trope, nsfw) values ('Both at the ER for stupid injuries', f
 insert into tropes (trope, nsfw) values ('Cute doctor/nurse & patient AU', false);
 insert into tropes (trope, nsfw) values ('Soulmates', false);
 
-drop table cards;
-
 create table cards (
     id serial primary key,
     string character varying(64),
     entries integer[]
 );
-
-drop table bingos;
 
 create table bingos (
     id serial primary key,
@@ -72,17 +65,5 @@ create table bingos (
     entries integer[]
 );
 
--- commit;
-
--- create unique index bingos_entries 
--- on bingos (entries);
--- alter table bingos 
--- add constraint unique_entries 
--- unique using index bingos_entries;
-
--- begin;
-
 insert into cards (string, entries) values ('571356b60e501bb05e81415a89d9c7ccfe7b3fab128ccde88b2bc7817919631c', array[35,24,36,14,48,21,40,23,39,28,44,2,20,48,48,30,10,36,40,17,44,9,24,4]);
 insert into bingos (string, entries) values('571356b60e501bb05e81415a89d9c7ccfe7b3fab128ccde88b2bc7817919631c', array[10, 11, 12, 13, 21]);
-
-commit;
