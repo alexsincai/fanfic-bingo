@@ -8,7 +8,7 @@ def create_card(nsfw=False):
     entries = [str(item["id"]) for item in db(query_string)]
 
     string = "".join([item for item in entries])
-    string = hash(string).split("$")[-1]
+    string = hash(string).split("$")[-1][-8:-1]
 
     entries = [int(item) for item in entries]
 
