@@ -22,16 +22,26 @@ def string(string, saved=None):
 
     if request.method == "POST":
         inserted = save_bingo(string, request.get_json())[0]["id"]
-        return jsonify({"redirect": url_for('bingo.saved', string=string, saved=inserted) })
+        return jsonify({"redirect": url_for('bingo.saved', string=string, saved=inserted)})
 
     entries = [dict(item) for item in get_card(string)]
-    
-    
-    return render_template("bingo.html", hasbingo=False, entries=entries, allownew=True)
+
+    if entries:
+        return render_template("bingo.html", hasbingo=False, entries=entries, allownew=True)
+
+    return redirect(url_for("bingo.index"))
 
 
 @bingo.route("/<string>/<int:saved>/")
 def saved(string, saved):
     entries = [dict(item) for item in get_card(string)]
-    bingos = get_bingo(string, saved)[0]["entries"]
-    return render_template("bingo.html", entries=entries, hasbingo=True, bingo=bingos, allownew=False)
+
+    if entries:
+        bingos = get_bingo(string, saved)
+
+        if bingos:
+            return render_template("bingo.html", entries=entries, hasbingo=True, bingo=bingos[0]["entries"], allownew=False)
+
+        return redirect(url_for("bingo.string", string=string))
+
+    return redirect(url_for("bingo.index"))

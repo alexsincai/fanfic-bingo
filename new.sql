@@ -1,3 +1,4 @@
+drop table tropes;
 create table tropes (
     id serial primary key,
     trope character varying(255),
@@ -53,17 +54,19 @@ insert into tropes (trope, nsfw) values ('Both at the ER for stupid injuries', f
 insert into tropes (trope, nsfw) values ('Cute doctor/nurse & patient AU', false);
 insert into tropes (trope, nsfw) values ('Soulmates', false);
 
+drop table cards;
 create table cards (
     id serial primary key,
     string character varying(64),
     entries integer[]
 );
 
+drop table bingos;
 create table bingos (
     id serial primary key,
     string character varying(64),
     entries integer[]
 );
 
-insert into cards (string, entries) values ('571356b60e501bb05e81415a89d9c7ccfe7b3fab128ccde88b2bc7817919631c', array[35,24,36,14,48,21,40,23,39,28,44,2,20,48,48,30,10,36,40,17,44,9,24,4]);
-insert into bingos (string, entries) values('571356b60e501bb05e81415a89d9c7ccfe7b3fab128ccde88b2bc7817919631c', array[10, 11, 12, 13, 21]);
+insert into cards (string, entries) values ('1cba692e7b64253a689b352f76f5d6df2629b22b2fa91d27415df265b28d25c1', array[35, 24, 36, 14, 30, 21, 40, 23, 39, 28, 44, 2, 20, 2, 17, 8, 5, 4, 26, 25, 11, 38, 3, 9, 34]);
+insert into bingos (string, entries) values('1cba692e7b64253a689b352f76f5d6df2629b22b2fa91d27415df265b28d25c1', array[10, 11, 12, 13, 22]);

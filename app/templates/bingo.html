@@ -18,16 +18,16 @@
     {% for entry in entries %}
         {% if hasbingo %}
             {% if loop.index0 in bingo %}
-                <div class="cell active">
+                <div class="cell active" data-id="{{ entry['id'] }}">
                     <span>{{ entry["trope"] }}</span>
                 </div>
             {% else %}
-                <div class="cell">
+                <div class="cell" data-id="{{ entry['id'] }}">
                     <span>{{ entry["trope"] }}</span>
                 </div>
             {% endif %}
         {% else %}
-            <div class="cell" data-index="{{ loop.index0 }}">
+            <div class="cell" data-index="{{ entry['id'] }}">
                 <span>{{ entry["trope"] }}</span>
             </div>
         {% endif %}
