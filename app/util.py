@@ -5,7 +5,6 @@ from psycopg2.extras import RealDictCursor as cursor_type
 
 def establish_connection():
     try:
-        # connection = connect("postgres://postgres:postgres@127.0.0.1/fanficbingo", sslmode="require")
         connection = connect(env["DATABASE_URL"], sslmode="require")
         connection.autocommit = True
         return connection
@@ -18,7 +17,5 @@ def db(statement, vars=None):
     with establish_connection() as conn:
         with conn.cursor(cursor_factory=cursor_type) as cursor:
             cursor.execute(statement, vars)
-
-            # print(cursor.statusmessage)
 
             return cursor.fetchall()
