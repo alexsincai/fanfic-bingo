@@ -27,7 +27,7 @@
                 </div>
             {% endif %}
         {% else %}
-            <div class="cell" data-index="{{ entry['id'] }}">
+            <div class="cell" data-index="{{ loop.index0 }}">
                 <span>{{ entry["trope"] }}</span>
             </div>
         {% endif %}
