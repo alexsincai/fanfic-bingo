@@ -1,0 +1,54 @@
+{% extends "template.html" %}
+
+{% block content %}
+
+{% if allownew == True %}
+    <h3 class="hidden">Bingo!</h3>
+{% endif %}
+
+
+
+<div class="card">
+    <div class="header">B</div>
+    <div class="header">I</div>
+    <div class="header">N</div>
+    <div class="header">G</div>
+    <div class="header">O</div>
+
+    {% for entry in entries %}
+        {% if hasbingo %}
+            {% if loop.index0 in bingo %}
+                <div class="cell active">
+                    <span>{{ entry["trope"] }}</span>
+                </div>
+            {% else %}
+                <div class="cell">
+                    <span>{{ entry["trope"] }}</span>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="cell" data-index="{{ loop.index0 }}">
+                <span>{{ entry["trope"] }}</span>
+            </div>
+        {% endif %}
+
+        {% if loop.index0 == 11 %}
+            <div class="cell active">
+                <span>FREE SPACE</span>
+            </div>
+        {% endif %}
+    
+    {% endfor %}
+</div>
+
+{% if allownew == True %}
+    <button class="hidden">Save this bingo!</button>
+{% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+    {% if allownew == True %}
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+    {% endif %}
+{% endblock %}

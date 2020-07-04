@@ -1,0 +1,13 @@
+{% extends "template.html" %}
+
+{% block content %}
+
+<form action="{{ url_for('bingo.index') }}" method="POST">
+    <button type="submit">Get a new Fanfic Tropes bingo!</button>
+    <label>
+        <span>...and make it naughty!</span>
+        <input type="checkbox" name="naughty">
+    </label>
+</form>
+
+{% endblock %}
