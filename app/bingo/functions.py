@@ -37,12 +37,16 @@ def get_card(string):
 def save_bingo(string, entries):
     query_string = "INSERT INTO bingos (string, entries) VALUES (%s, %s) RETURNING id;"
     id = db(query_string, (string, entries,))
+    id = id[0]["id"]
 
-    query_string = ()
+    fakeid = hash(str(id) * 17).split("$")[-1][-8:-1]
+
+    query_string = "UPDATE bingos SET fakeid = %s where id = %s returning fakeid;"
+    db(query_string, (fakeid, id,))
     
-    return id
+    return fakeid
 
 
 def get_bingo(string, id):
-    query_string = "SELECT entries FROM bingos WHERE string = %s AND id = %s;"
+    query_string = "SELECT entries FROM bingos WHERE string = %s AND fakeid = %s;"
     return db(query_string, (string, id,))

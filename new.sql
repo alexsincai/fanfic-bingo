@@ -65,8 +65,9 @@ drop table bingos;
 create table bingos (
     id serial primary key,
     string character varying(7),
+    fakeid character varying(7),
     entries integer[]
 );
 
-insert into cards (string, entries) values ('b28d25c', array[35, 24, 36, 14, 30, 21, 40, 23, 39, 28, 44, 2, 20, 2, 17, 8, 5, 4, 26, 25, 11, 38, 3, 9, 34]);
-insert into bingos (string, entries) values('b28d25c', array[10, 11, 12, 13, 22]);
+insert into cards (string, entries) values ('b28d25c', array[35, 24, 36, 14, 30, 21, 40, 23, 39, 28, 44, 2, 20, 48, 17, 8, 5, 4, 25, 11, 38, 3, 9, 34]);
+insert into bingos (string, fakeid, entries) values('b28d25c', 'ca489e6', array[10, 11, 12, 13, 22]);

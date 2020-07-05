@@ -21,7 +21,7 @@ def index():
 def string(string, saved=None):
 
     if request.method == "POST":
-        inserted = save_bingo(string, request.get_json())[0]["id"]
+        inserted = save_bingo(string, request.get_json())
         return jsonify({"redirect": url_for('bingo.saved', string=string, saved=inserted)})
 
     entries = [dict(item) for item in get_card(string)]
@@ -32,7 +32,7 @@ def string(string, saved=None):
     return redirect(url_for("bingo.index"))
 
 
-@bingo.route("/<string>/<int:saved>/")
+@bingo.route("/<string>/<saved>/")
 def saved(string, saved):
     entries = [dict(item) for item in get_card(string)]
 
