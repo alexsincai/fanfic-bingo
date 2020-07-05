@@ -17,6 +17,7 @@
         <header>
             <h1><a href="{{ url_for('index') }}">Fanfic Tropes</a></h1>
             <h2>Bingo</h2>
+                <label><input type="checkbox" id="lightmode"><span>Light mode</span></label>
         </header>
         <main>
             {% block content %}
@@ -29,6 +30,44 @@
 
         {% block scripts %}
         {% endblock %}
+
+        <script>
+            function getLightMode() {
+                return JSON.parse(window.localStorage.getItem("fanfic-tropes-light-mode"));
+            }
+            
+            function applyLightMode() {
+                const isLightMode = getLightMode();
+                const span = document.querySelector("header label span");
+                
+                if (!!isLightMode) {
+                    document.body.classList.add("light");
+                    span.innerText = "Dark mode";
+                } else {
+                    document.body.classList.remove("light");
+                    span.innerText = "Light mode";
+                }
+            }
+            
+            function switchLightMode(e) {
+                e.preventDefault();
+                window.localStorage.setItem("fanfic-tropes-light-mode", JSON.stringify(e.target.checked));
+                
+                applyLightMode();
+            }
+            
+            function decideLightMode() {
+                const lightSwitch = document.querySelector("#lightmode");
+
+                lightSwitch.checked = getLightMode();
+                lightSwitch.addEventListener("input", switchLightMode);
+                
+                applyLightMode();
+            }
+
+            decideLightMode();
+
+        </script>
     </body>
 
 </html>
