@@ -1,6 +1,6 @@
 DEBUG            = True
 
-VERSION          = "0.8"
+VERSION          = "0.8.13"
 
 THREADS_PER_PAGE = 2
 CSRF_ENABLED     = True
